@@ -19,14 +19,15 @@ class Bank:
         for account_id in self.accounts:
             if account_id['firstname'] == sender['firstname'] and account_id['lastname'] == sender['lastname']:
                 sender_exist = True
-                raise (AssertionError('Sender has no account yet!'))
+                break
+        assert sender_exist, 'Sender has no account yet!'
         for recipient_id in self.accounts:
             if recipient_id['firstname'] == recipient['firstname'] and recipient_id['lastname'] == recipient['lastname']:
                 recipient_exist = True
-                raise (AssertionError('Recipient has no account yet!'))
-        for value in transaction['amount']:
-            if value <= 0:
-                raise (AssertionError('Amount has to be greater than 0'))
+                break
+        assert recipient_exist, 'Recipient has no account yet!'
+
+        assert amount > 0, 'Amount has to be greater than 0'
 
         self.transactions.append(transaction)
         return transaction
