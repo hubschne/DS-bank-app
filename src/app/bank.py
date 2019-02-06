@@ -14,7 +14,7 @@ class Bank:
 
     def add_transaction(self, *, sender, recipient, subject, amount):
         transaction = {'sender': sender, 'recipient': recipient, 'subject': subject, 'amount': amount}
-        sender_exist= False
+        sender_exist = False
         recipient_exist = False
         for account_id in self.accounts:
             if account_id['firstname'] == sender['firstname'] and account_id['lastname'] == sender['lastname']:
@@ -22,7 +22,8 @@ class Bank:
                 break
         assert sender_exist, 'Sender has no account yet!'
         for recipient_id in self.accounts:
-            if recipient_id['firstname'] == recipient['firstname'] and recipient_id['lastname'] == recipient['lastname']:
+            if recipient_id['firstname'] == recipient['firstname'] \
+                    and recipient_id['lastname'] == recipient['lastname']:
                 recipient_exist = True
                 break
         assert recipient_exist, 'Recipient has no account yet!'
