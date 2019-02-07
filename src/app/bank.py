@@ -22,5 +22,10 @@ class Bank:
                                       amount=amount)
         assert sender.number in self.accounts, 'Sender has no account yet!'
         assert recipient.number in self.accounts, 'Recipient has no account yet!'
-        self.transactions.append(transaction)
-        return transaction
+        if not sender.has_funds_for(amount):
+            raise AssertionError('Account has not enough funds')
+        else:
+            sender.balance -= amount
+            recipient.balance += amount
+            self.transactions.append(transaction)
+            return transaction

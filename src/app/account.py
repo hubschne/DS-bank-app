@@ -5,7 +5,7 @@ class Account:
         self.number = number
         self.balance = balance
 
-        assert type(self.number) == int, 'Number needs to be an integer'
+        assert type(number) == int, 'Number needs to be an integer'
         if balance is not None:
             assert type(self.balance) == float, 'Balance needs to be a float'
         else:
