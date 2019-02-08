@@ -1,15 +1,13 @@
+
 class Account:
-    def __init__(self, *, firstname, lastname, number, balance=None):
+    def __init__(self, *, firstname, lastname, number, balance=0.0):
+        assert type(number) == int, 'Number needs to be an integer'
+        assert type(balance) == float, 'Balance needs to be a float'
+
         self.firstname = firstname
         self.lastname = lastname
         self.number = number
         self.balance = balance
-
-        assert type(number) == int, 'Number needs to be an integer'
-        if balance is not None:
-            assert type(self.balance) == float, 'Balance needs to be a float'
-        else:
-            self.balance = 0
 
     def info(self):
         return f'Number {self.number}: {self.firstname} {self.lastname} - {self.balance} €'
