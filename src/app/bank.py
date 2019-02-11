@@ -97,9 +97,9 @@ class Bank:
 
     def time_statement(self, *, account, year=None, month=None,):
         account_transactions = []
-        for tr in self.transactions:
-            if tr.sender == account.number or tr.recipient == account.number:
-                account_transactions.append(tr)
+        for tra in self.transactions:
+            if tra.sender == account.number or tra.recipient == account.number:
+                account_transactions.append(tra)
         sorted_account_transactions = self.sort_list_date(account_transactions)
 
         account_transactions_year = []
@@ -111,15 +111,15 @@ class Bank:
             return account_transactions_year
 
         elif year and month:
-            for tran in sorted_account_transactions:
-                if tran.datetime.year == year and tran.datetime.month == month:
-                    self.print_transaction(tran)
+            for tra in sorted_account_transactions:
+                if tra.datetime.year == year and tra.datetime.month == month:
+                    self.print_transaction(tra)
 
     def filter_subject_statement(self, *, account, year=None, month=None):
         account_transactions_year = self.time_statement(account=account, year=year, month=month)
         new_list = self.sort_list_subject(account_transactions_year)
-        for x in new_list:
-            self.print_transaction2(account, x)
+        for tra in new_list:
+            self.print_transaction2(account, tra)
 
         # for tra in account_transaction_year:
             #     print(tra.info() + f'- {tra.amount} €')
